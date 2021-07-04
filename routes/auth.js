@@ -5,19 +5,28 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
-const User = require('../models/User')
+const User = require('../models/User');
+const auth = require('../middleware/auth')
 
 /**
  * @swagger
  * /api/auth:
  *   get:
  *     summary: Get logged in user
- *     description: Get logged in user
+ *     description: Protected route to get logged in user
  *     responses:
  *      200
 */
-router.get('/', (req, res) => {
-    res.send('Get logged in user')
+router.get('/', auth, async (req, res) => {
+    try {
+
+        let user = await User.findById({ _id: req.user.id }).select('-password');
+        res.json(user);
+
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send('Server error')
+    }
 })
 
 /**
