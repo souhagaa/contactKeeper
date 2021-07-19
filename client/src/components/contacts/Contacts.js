@@ -3,7 +3,7 @@ import React, { Fragment, useContext } from 'react'
 import ContactContext from '../../context/contact/contactContext'
 import ContactItem from './ContactItem'
 
-const Contacts = ({ contact }) => {
+const Contacts = () => {
     const contactContext = useContext(ContactContext)
     
     const { contacts } = contactContext
