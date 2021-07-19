@@ -10,7 +10,7 @@ const User = require('../models/User')
 /**
  * @swagger
  * /api/users:
- *   get:
+ *   post:
  *     summary: Register a user given name, email and password
  *     description: Registers a user so he can have an account to keep their contacts
  *     responses:
