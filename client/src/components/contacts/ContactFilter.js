@@ -13,10 +13,9 @@ const ContactFilter = () => {
             text.current.value = '';
         }
 
-    });
+    }, [filtered]);
 
     const onChange = e => {
-        console.log("text.current.value: ", text.current.value);
         if(text.current.value !== '') {
             filterContact(e.target.value)
         } else {
