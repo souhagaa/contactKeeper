@@ -54,7 +54,7 @@ const AuthState = props => {
 
     }
 
-    return (<AuthState.Provider
+    return (<AuthContext.Provider
         value={{
             token: state.token,
             isAuthenticated: state.isAuthenticated,
@@ -68,8 +68,8 @@ const AuthState = props => {
             clearErrors
         }}>
         { props.children }
-    </AuthState.Provider>)
+    </AuthContext.Provider>)
 
 }
 
-export default ContactState
+export default AuthState
