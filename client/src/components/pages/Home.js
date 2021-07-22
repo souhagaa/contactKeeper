@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Contacts from '../contacts/Contacts'
 import ContactForm from '../contacts/ContactForm'
 import ContactFilter from '../contacts/ContactFilter'
+
+import AuthContext from '../../context/auth/authContext'
+
 const Home = () => {
+    const authContext = useContext(AuthContext)
+
+    // load the user on load/reload of the home page
+    useEffect(() => {
+        authContext.loadUser();
+        //eslint-disable-next-line
+    }, [])
+
     return (
         <div className="grid-2">
             <div>

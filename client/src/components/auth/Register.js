@@ -2,19 +2,23 @@ import React, { useState , useContext, useEffect } from 'react'
 import AlertContext from '../../context/alert/alertContext'
 import AuthContext from '../../context/auth/authContext'
 
-const Register = () => {
+const Register = (props) => {
     const alertContext = useContext(AlertContext)
     const authContext = useContext(AuthContext)
 
     const { setAlert } = alertContext
-    const { registerUser, error, clearErrors } = authContext
+    const { registerUser, error, clearErrors, isAuthenticated } = authContext
 
     useEffect(() => {
+        if (isAuthenticated) {
+            props.history.push('/') //redirect to the home page if user authenticated
+        }
         if(error === 'User already exists') { // better to have an id for the errors for larger apps
             setAlert(error, 'danger')
             clearErrors()
         }
-    }, [error])
+        // eslint-disable-next-line
+    }, [error, props.history, isAuthenticated])
 
     const [user, setUser] = useState({
         name: '',
