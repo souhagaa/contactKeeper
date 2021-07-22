@@ -101,8 +101,8 @@ const AuthState = props => {
 
     // Logout user
 
-    const logoutUser = user => {
-
+    const logout = () => {
+        dispatch({ type: LOGOUT })
     }
 
     // Clear errors
@@ -119,7 +119,7 @@ const AuthState = props => {
             loadUser,
             registerUser,
             loginUser,
-            logoutUser,
+            logout,
             clearErrors
         }}>
         { props.children }
