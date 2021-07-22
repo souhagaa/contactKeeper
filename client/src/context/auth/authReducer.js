@@ -29,8 +29,8 @@ export default (state, action) => {
                 ...state,
                 token: null,
                 user: null,
-                isAuthenticated: null,
-                loading: true,
+                isAuthenticated: false,
+                loading: false,
                 error: action.payload
             }
         case USER_LOADED:
