@@ -2,7 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-
+const path = require('path');
 
 const app = express();
 
@@ -43,11 +43,18 @@ const swaggerSpec = swaggerJSDoc(options);
 //set up Swagger UI with the swaggerSpec definitions and serve it to the /docs endpoint.
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.get('/', (req, res) => res.send('hello world'))
-
 // Define our routes
 app.use('/api/users', require('./routes/users'))
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/contacts', require('./routes/contacts'))
+
+// Serve static assests in production
+if(process.env.NODE_ENV === 'production') {
+  // Serve static folder
+  app.use(express.static('client/build'))
+  
+  // If we hit the home page it's going to load the index.html inside the build folder
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+}
 
 app.listen(PORT, ()=> console.log(`Server started on port ${PORT}`))
