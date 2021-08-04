@@ -55,6 +55,10 @@ if(process.env.NODE_ENV === 'production') {
   
   // If we hit the home page it's going to load the index.html inside the build folder
   app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+
+  app.use('/docs', (req, res) => {
+    res.status(404).send("Not Found");
+  });
 }
 
 app.listen(PORT, ()=> console.log(`Server started on port ${PORT}`))
