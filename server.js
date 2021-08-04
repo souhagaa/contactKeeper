@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }))
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-    title: 'Express API for JSONPlaceholder',
+    title: 'Express API for Contact Keeper',
     version: '1.0.0',
      description:
       'This is a REST API application made with Express.',
